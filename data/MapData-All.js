@@ -1,4 +1,4 @@
-var canonnEd3d_all = {
+var canonnEd3d_thargoids = {
 
 	//Define Categories
 	systemsData: {
@@ -138,7 +138,7 @@ var canonnEd3d_all = {
 				tslRoute["cat"]=[502]
 				tslRoute["circle"]=false
 				
-				canonnEd3d_all.systemsData.routes.push(tslRoute);
+				canonnEd3d_thargoids.systemsData.routes.push(tslRoute);
 			}
 
 		}
@@ -162,7 +162,7 @@ var canonnEd3d_all = {
 				};
 
 				// We can then push the site to the object that stores all systems
-				canonnEd3d_all.systemsData.systems.push(hdFrom);
+				canonnEd3d_thargoids.systemsData.systems.push(hdFrom);
 				
 				var hdTo = {}
 				hdTo["name"] = data[i].To;
@@ -176,7 +176,7 @@ var canonnEd3d_all = {
 				};
 
 				// We can then push the site to the object that stores all systems
-				canonnEd3d_all.systemsData.systems.push(hdTo);
+				canonnEd3d_thargoids.systemsData.systems.push(hdTo);
 				
 				var hdRoute = {};
 				
@@ -185,7 +185,7 @@ var canonnEd3d_all = {
 				hdRoute["cat"]=[802]
 				hdRoute["circle"]=false
 				
-				canonnEd3d_all.systemsData.routes.push(hdRoute);
+				canonnEd3d_thargoids.systemsData.routes.push(hdRoute);
 			}
 
 		}
@@ -218,7 +218,7 @@ var canonnEd3d_all = {
 				
 
 				// We can then push the site to the object that stores all systems
-				canonnEd3d_all.systemsData.systems.push(tiSite);
+				canonnEd3d_thargoids.systemsData.systems.push(tiSite);
 			}
 
 		}
@@ -266,7 +266,7 @@ var canonnEd3d_all = {
 				
 
 				// We can then push the site to the object that stores all systems
-				canonnEd3d_all.systemsData.systems.push(msSite);
+				canonnEd3d_thargoids.systemsData.systems.push(msSite);
 			}
 
 		}
@@ -292,7 +292,7 @@ var canonnEd3d_all = {
 				};
 
 				// We can then push the site to the object that stores all systems
-				canonnEd3d_all.systemsData.systems.push(bnSite);
+				canonnEd3d_thargoids.systemsData.systems.push(bnSite);
 			}
 
 		}
@@ -322,7 +322,7 @@ var canonnEd3d_all = {
 				};
 
 				// We can then push the site to the object that stores all systems
-				canonnEd3d_all.systemsData.systems.push(tsSite);
+				canonnEd3d_thargoids.systemsData.systems.push(tsSite);
 			}
 
 		}
@@ -352,38 +352,38 @@ var canonnEd3d_all = {
 		
 		//Barnacles
 		var p1 = new Promise(function (resolve, reject) {
-				canonnEd3d_all.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vTCGOwaRT8ESad9j0GAQ7tMMNj8ObxipFW8fop3eaZ-HoCVo_k9dQsHVvs1oFvARrY5SC6o4uDAWKQA/pub?gid=290263950&single=true&output=csv", canonnEd3d_all.formatBN, resolve);
+				canonnEd3d_thargoids.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vTCGOwaRT8ESad9j0GAQ7tMMNj8ObxipFW8fop3eaZ-HoCVo_k9dQsHVvs1oFvARrY5SC6o4uDAWKQA/pub?gid=290263950&single=true&output=csv", canonnEd3d_thargoids.formatBN, resolve);
 			});
 
 		//Thargoid Site Links
 		var p2 = new Promise(function (resolve, reject) {
-			canonnEd3d_all.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vShCRewOJojaJ3XCQ3hzaSihFD46Px2qB6cO0d7NAbNNrb8729fA4UqzTxoKP8UFsE60XomVK8juyXq/pub?gid=0&single=true&output=csv", canonnEd3d_all.formatTSL, resolve);
+			canonnEd3d_thargoids.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vShCRewOJojaJ3XCQ3hzaSihFD46Px2qB6cO0d7NAbNNrb8729fA4UqzTxoKP8UFsE60XomVK8juyXq/pub?gid=0&single=true&output=csv", canonnEd3d_thargoids.formatTSL, resolve);
 		});
 		
 		//Thargoid Sites
 		var p3 = new Promise(function (resolve, reject) {
-				canonnEd3d_all.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vR4-rhi1p4BU7AlOSj7_78Kvk5Ox6vb39vzzlWU3yI-dqlaLxk-CFLWvAFKc-J7WhomFiQ_u0P7Stxz/pub?gid=0&single=true&output=csv", canonnEd3d_all.formatTS, resolve);
+				canonnEd3d_thargoids.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vR4-rhi1p4BU7AlOSj7_78Kvk5Ox6vb39vzzlWU3yI-dqlaLxk-CFLWvAFKc-J7WhomFiQ_u0P7Stxz/pub?gid=0&single=true&output=csv", canonnEd3d_thargoids.formatTS, resolve);
 			});
 			
 		//Thargoid Sites
 		var p4 = new Promise(function (resolve, reject) {
-				canonnEd3d_all.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vRQ9O_WQPF7gpL1dEWgI97GVD_EMN7Sgm4LYxj2N4SQtG5HNInyP08I1eDqkZHQhYeIVNHiwtiDOYlS/pub?gid=981173890&single=true&output=csv", canonnEd3d_all.formatMS, resolve);
+				canonnEd3d_thargoids.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vRQ9O_WQPF7gpL1dEWgI97GVD_EMN7Sgm4LYxj2N4SQtG5HNInyP08I1eDqkZHQhYeIVNHiwtiDOYlS/pub?gid=981173890&single=true&output=csv", canonnEd3d_thargoids.formatMS, resolve);
 			});			
 
 		// Thargoid US			
 		var p5 = new Promise(function (resolve, reject) {
-				canonnEd3d_all.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vROqL6zifWWxcwlZ0R6iLvrMrUdfJijnMoZee-SrN0NVPqhTdH3Zdx6E7RxP1wH2xgwfrhwfVWUHnKU/pub?gid=954889761&single=true&output=csv", canonnEd3d_all.formatTI, resolve);
+				canonnEd3d_thargoids.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vROqL6zifWWxcwlZ0R6iLvrMrUdfJijnMoZee-SrN0NVPqhTdH3Zdx6E7RxP1wH2xgwfrhwfVWUHnKU/pub?gid=954889761&single=true&output=csv", canonnEd3d_thargoids.formatTI, resolve);
 			});			
 
 		// Thargoid Hyperdictions
 		var p6 = new Promise(function (resolve, reject) {			
-			canonnEd3d_all.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vSEVt8eYMJgd5vXfCMiExWc23D1G5G0DCEfs5A6N3AQGupAp1KslajioBZgB0IGiMd7MR_Ur3RPsv39/pub?gid=1013174415&single=true&output=csv", canonnEd3d_all.formatHD, resolve);	
+			canonnEd3d_thargoids.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vSEVt8eYMJgd5vXfCMiExWc23D1G5G0DCEfs5A6N3AQGupAp1KslajioBZgB0IGiMd7MR_Ur3RPsv39/pub?gid=1013174415&single=true&output=csv", canonnEd3d_thargoids.formatHD, resolve);	
 		});						
 		
 		Promise.all([p1, p2, p3, p4, p5, p6]).then(function () {
 			Ed3d.init({
 				container: 'edmap',
-				json: canonnEd3d_all.systemsData,
+				json: canonnEd3d_thargoids.systemsData,
 				withHudPanel: true,
 				hudMultipleSelect: true,
 				effectScaleSystem: [28, 10000],
