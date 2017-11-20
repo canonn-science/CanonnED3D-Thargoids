@@ -69,6 +69,10 @@ var canonnEd3d_thargoids = {
 				"700": {
 					"name": "Non-Human Signal Source",
 					"color": "cc3333"
+				},
+				"701": {
+					"name": "No NHSS Found",
+					"color": "666664"
 				}
 				
 			},			
@@ -298,7 +302,37 @@ var canonnEd3d_thargoids = {
 		}
 
 	},
+	// Sites visited but not NHSS
+	formatVS: function (data) {
+		//Here you format BN JSON to ED3D acceptable object
 
+		// this is assuming data is an array []
+		for (var i = 0; i < data.length; i++) {
+			if (data[i].System && data[i].System.replace(" ", "").length > 1) {
+				var tiSite = {};
+				tiSite["name"] = data[i].System;
+		
+
+				tiSite["cat"] = [701];
+				tiSite["coords"] = {
+					"x": parseFloat(data[i].X),
+					"y": parseFloat(data[i].Y),
+					"z": parseFloat(data[i].Z)
+				};
+
+
+				
+				
+				
+
+				// We can then push the site to the object that stores all systems
+				canonnEd3d_thargoids.systemsData.systems.push(tiSite);
+			}
+
+		}
+
+	},	
+	
 
 	formatTS: function (data) {
 		//Here you format TS JSON to ED3D acceptable object
@@ -380,7 +414,12 @@ var canonnEd3d_thargoids = {
 			canonnEd3d_thargoids.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vSEVt8eYMJgd5vXfCMiExWc23D1G5G0DCEfs5A6N3AQGupAp1KslajioBZgB0IGiMd7MR_Ur3RPsv39/pub?gid=1013174415&single=true&output=csv", canonnEd3d_thargoids.formatHD, resolve);	
 		});						
 		
-		Promise.all([p1, p2, p3, p4, p5, p6]).then(function () {
+		var p7 = new Promise(function (resolve, reject) {			
+			canonnEd3d_thargoids.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vS3sabePivfqUNdCie_7UPA6cBHzXVNtFfTP6JnHfcQez4GWQoRRkTxvzIRBNnNbDV2ATfEg0iGK0Cj/pub?gid=640903479&single=true&output=csv", canonnEd3d_thargoids.formatVS, resolve);	
+		});						
+
+
+		Promise.all([p1, p2, p3, p4, p5, p6, p7]).then(function () {
 			Ed3d.init({
 				container: 'edmap',
 				json: canonnEd3d_thargoids.systemsData,
