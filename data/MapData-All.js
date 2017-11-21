@@ -65,11 +65,19 @@ var canonnEd3d_thargoids = {
 					"color": "50a830"
 				},
 			},			
-			"Unidentified Signal Source - (USS)": {
+			"Non Human Signal Sources": {
 				"700": {
-					"name": "Non-Human Signal Source",
+					"name": "Threat 5",
 					"color": "cc3333"
 				},
+				"702": {
+					"name": "Threat 2",
+					"color": "33ffec"
+				},
+				"706": {
+					"name": "Threat 6",
+					"color": "ffc300"
+				},				
 				"701": {
 					"name": "No NHSS Found",
 					"color": "666664"
@@ -205,17 +213,25 @@ var canonnEd3d_thargoids = {
 				var tiSite = {};
 				tiSite["name"] = data[i].System;
 		
-
-				switch(data[i].USSType) {
-				case '$USS_Type_NonHuman;':
-					tiSite["cat"] = [700];
-					tiSite["coords"] = {
+				tiSite["coords"] = {
 					"x": parseFloat(data[i].x),
 					"y": parseFloat(data[i].y),
 					"z": parseFloat(data[i].z)
-					}
+				}
+
+				switch(data[i].Threat) {
+				case '2':
+					tiSite["cat"] = [702];
+					
 					break;
-				
+				case '5':
+					tiSite["cat"] = [700];
+					
+					break;
+				case '6':
+					tiSite["cat"] = [706];
+					
+					break;					
 				} 			
 				
 				
@@ -406,7 +422,7 @@ var canonnEd3d_thargoids = {
 
 		// Thargoid US			
 		var p5 = new Promise(function (resolve, reject) {
-				canonnEd3d_thargoids.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vROqL6zifWWxcwlZ0R6iLvrMrUdfJijnMoZee-SrN0NVPqhTdH3Zdx6E7RxP1wH2xgwfrhwfVWUHnKU/pub?gid=954889761&single=true&output=csv", canonnEd3d_thargoids.formatTI, resolve);
+				canonnEd3d_thargoids.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vROqL6zifWWxcwlZ0R6iLvrMrUdfJijnMoZee-SrN0NVPqhTdH3Zdx6E7RxP1wH2xgwfrhwfVWUHnKU/pub?gid=1590459372&single=true&output=csv", canonnEd3d_thargoids.formatTI, resolve);
 			});			
 
 		// Thargoid Hyperdictions
