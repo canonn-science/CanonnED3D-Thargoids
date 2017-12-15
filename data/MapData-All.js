@@ -88,10 +88,6 @@ var canonnEd3d_thargoids = {
 				"707": {
 					"name": "Threat 7",
 					"color": "d142f4"
-				},								
-				"701": {
-					"name": "No NHSS Found",
-					"color": "666664"
 				}
 				
 			},			
