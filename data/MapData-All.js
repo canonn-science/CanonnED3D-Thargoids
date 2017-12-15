@@ -1,3 +1,10 @@
+$.urlParam = function(name){
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	return results[1] || 0;
+}
+
+
+
 var canonnEd3d_thargoids = {
 
 	//Define Categories
@@ -78,6 +85,10 @@ var canonnEd3d_thargoids = {
 					"name": "Threat 6",
 					"color": "ffc300"
 				},				
+				"707": {
+					"name": "Threat 7",
+					"color": "d142f4"
+				},								
 				"701": {
 					"name": "No NHSS Found",
 					"color": "666664"
@@ -204,6 +215,69 @@ var canonnEd3d_thargoids = {
 
 	},					
 	
+	formatGlyphs: function (data) {
+		try {
+			var subject=$.urlParam('Sigil');
+		}
+		catch(err) {
+			console.log(err)
+			var subject="4B-3";
+		}
+				
+		//canonnEd3d_thargoids.systemsData.categories["<a href=\"https://tools.canonn.technology/thargoid_glyphs/#"+subject+"\">"+subject+"</a>"]= {"302": {"name": "Route","color": "ff9900"}};
+		
+		canonnEd3d_thargoids.systemsData.categories["Thargoid Glyph"]= {"302": {"name": "<a href=\"https://tools.canonn.technology/thargoid_glyphs/#"+subject+"\"><img src=\"https://tools.canonn.technology/thargoid_glyphs/images/composite/"+subject+".png\"  style=\"background-color:orange;border-radius: 5%;\"/></a>","color": "ff9900"}};
+				
+		for (var i = 0; i < data.length; i++) {
+			
+			var symbol=data[i].Sigil.split("-")
+			var inner=symbol[1]
+			var outer=symbol[0]
+		
+			if (data[i].From && data[i].From.replace(" ", "").length > 1 && data[i].Sigil == subject && data[i].Included == 'Y' ) {
+				
+				//var glyphFrom = {}
+				//glyphFrom["name"] = data[i].From;
+
+				
+				//glyphFrom["coords"] = {
+				//	"x": parseFloat(data[i].FromX),
+				//	"y": parseFloat(data[i].FromY),
+				//	"z": parseFloat(data[i].FromZ)
+				//};
+
+				// We can then push the site to the object that stores all systems
+				//canonnEd3d_thargoids.systemsData.systems.push(glyphFrom);
+				
+				//var glyphTo = {}
+				//glyphTo["name"] = data[i].To;
+
+				//Ripe or Dead Status not enabled yet, pending CSV fixes
+				//glyphTo["cat"] = [301];
+				//glyphTo["coords"] = {
+				//	"x": parseFloat(data[i].ToX),
+				//	"y": parseFloat(data[i].ToY),
+				//	"z": parseFloat(data[i].ToZ)
+				//};
+
+				// We can then push the site to the object that stores all systems
+				//canonnEd3d_thargoids.systemsData.systems.push(glyphTo);
+				
+				var glyphRoute = {};
+				
+				glyphRoute["title"]=data[i].Sigi+" "+data[i].From+" to "+data[i].To 
+				glyphRoute["points"] = [{"s": data[i].From,"label": data[i].From},{"s": data[i].To,"label": data[i].To}]
+				glyphRoute["cat"]=[302]
+				glyphRoute["circle"]=false
+				
+				canonnEd3d_thargoids.systemsData.routes.push(glyphRoute);
+			}
+
+		}
+
+
+	},		
+	
 	formatTI: function (data) {
 		//Here you format BN JSON to ED3D acceptable object
 
@@ -228,6 +302,10 @@ var canonnEd3d_thargoids = {
 					tiSite["cat"] = [700];
 					
 					break;
+				case '7':
+					tiSite["cat"] = [707];
+					
+					break;					
 				case '6':
 					tiSite["cat"] = [706];
 					
@@ -319,22 +397,22 @@ var canonnEd3d_thargoids = {
 
 	},
 	// Sites visited but not NHSS
-	formatVS: function (data) {
+	//formatVS: function (data) {
 		//Here you format BN JSON to ED3D acceptable object
 
 		// this is assuming data is an array []
-		for (var i = 0; i < data.length; i++) {
-			if (data[i].System && data[i].System.replace(" ", "").length > 1) {
-				var tiSite = {};
-				tiSite["name"] = data[i].System;
+	//	for (var i = 0; i < data.length; i++) {
+	//		if (data[i].System && data[i].System.replace(" ", "").length > 1) {
+	//			var tiSite = {};
+	//			tiSite["name"] = data[i].System;
 		
 
-				tiSite["cat"] = [701];
-				tiSite["coords"] = {
-					"x": parseFloat(data[i].X),
-					"y": parseFloat(data[i].Y),
-					"z": parseFloat(data[i].Z)
-				};
+	//			tiSite["cat"] = [701];
+	//			tiSite["coords"] = {
+	//				"x": parseFloat(data[i].X),
+	//				"y": parseFloat(data[i].Y),
+	//				"z": parseFloat(data[i].Z)
+	//			};
 
 
 				
@@ -342,12 +420,12 @@ var canonnEd3d_thargoids = {
 				
 
 				// We can then push the site to the object that stores all systems
-				canonnEd3d_thargoids.systemsData.systems.push(tiSite);
-			}
+		//		canonnEd3d_thargoids.systemsData.systems.push(tiSite);
+		//	}
 
-		}
+	//	}
 
-	},	
+	//},	
 	
 
 	formatTS: function (data) {
@@ -430,12 +508,16 @@ var canonnEd3d_thargoids = {
 			canonnEd3d_thargoids.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vSEVt8eYMJgd5vXfCMiExWc23D1G5G0DCEfs5A6N3AQGupAp1KslajioBZgB0IGiMd7MR_Ur3RPsv39/pub?gid=1013174415&single=true&output=csv", canonnEd3d_thargoids.formatHD, resolve);	
 		});						
 		
-		var p7 = new Promise(function (resolve, reject) {			
-			canonnEd3d_thargoids.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vS3sabePivfqUNdCie_7UPA6cBHzXVNtFfTP6JnHfcQez4GWQoRRkTxvzIRBNnNbDV2ATfEg0iGK0Cj/pub?gid=640903479&single=true&output=csv", canonnEd3d_thargoids.formatVS, resolve);	
+		//var p7 = new Promise(function (resolve, reject) {			
+		//	canonnEd3d_thargoids.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vS3sabePivfqUNdCie_7UPA6cBHzXVNtFfTP6JnHfcQez4GWQoRRkTxvzIRBNnNbDV2ATfEg0iGK0Cj/pub?gid=640903479&single=true&output=csv", canonnEd3d_thargoids.formatVS, resolve);	
+		//});						
+		
+		var p0 = new Promise(function (resolve, reject) {			
+			canonnEd3d_thargoids.parseData("https://docs.google.com/spreadsheets/d/e/2PACX-1vSlKb1HgU7PZDRRvlDqorEFHfo4sxZZorGRTaMc0qQt9tJGBox-bCxGTbg1gCLQfWi8hXdyltDZGL2t/pub?gid=29696533&single=true&output=csv", canonnEd3d_thargoids.formatGlyphs, resolve);	
 		});						
 
 
-		Promise.all([p1, p2, p3, p4, p5, p6, p7]).then(function () {
+		Promise.all([p0, p1, p2, p3, p4, p5, p6]).then(function () {
 			Ed3d.init({
 				container: 'edmap',
 				json: canonnEd3d_thargoids.systemsData,
