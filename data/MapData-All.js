@@ -73,30 +73,35 @@ var canonnEd3d_thargoids = {
 				},
 			},			
 			"Non Human Signal Sources": {
-				"705": {
-					"name": "Threat 5",
-					"color": "cc3333"
-				},
 				"702": {
 					"name": "Threat 2",
-					"color": "33ffec"
+					"color": "99b433"
 				},
 				"703": {
 					"name": "Threat 3",
-					"color": "4152f4"
+					"color": "1e7145"
 				},				
 				"704": {
 					"name": "Threat 4",
-					"color": "50a830"
+					"color": "ff0097"
 				},								
+				"705": {
+					"name": "Threat 5",
+					"color": "b91d47"
+				},			
 				"706": {
 					"name": "Threat 6",
-					"color": "ffc300"
+					"color": "e3a21a"
 				},				
 				"707": {
 					"name": "Threat 7",
-					"color": "d142f4"
-				} 	
+					"color": "603cba"
+				} ,
+				"708": {
+					"name": "Threat 8",
+					"color": "da532c"
+				} 					
+				
 				
 			},			
 			"Error Sites": {
@@ -318,6 +323,10 @@ var canonnEd3d_thargoids = {
 					tiSite["cat"] = [707];
 					
 					break;					
+				case '8':
+					tiSite["cat"] = [708];
+					
+					break;										
 				case '6':
 					tiSite["cat"] = [706];
 					
