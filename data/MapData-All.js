@@ -73,7 +73,7 @@ var canonnEd3d_thargoids = {
 				},
 			},			
 			"Non Human Signal Sources": {
-				"700": {
+				"705": {
 					"name": "Threat 5",
 					"color": "cc3333"
 				},
@@ -81,6 +81,14 @@ var canonnEd3d_thargoids = {
 					"name": "Threat 2",
 					"color": "33ffec"
 				},
+				"703": {
+					"name": "Threat 3",
+					"color": "4152f4"
+				},				
+				"704": {
+					"name": "Threat 4",
+					"color": "50a830"
+				},								
 				"706": {
 					"name": "Threat 6",
 					"color": "ffc300"
@@ -88,7 +96,7 @@ var canonnEd3d_thargoids = {
 				"707": {
 					"name": "Threat 7",
 					"color": "d142f4"
-				}
+				} 	
 				
 			},			
 			"Error Sites": {
@@ -294,8 +302,16 @@ var canonnEd3d_thargoids = {
 					tiSite["cat"] = [702];
 					
 					break;
+				case '3':
+					tiSite["cat"] = [703];
+					
+					break;
+				case '4':
+					tiSite["cat"] = [704];
+					
+					break;					
 				case '5':
-					tiSite["cat"] = [700];
+					tiSite["cat"] = [705];
 					
 					break;
 				case '7':
